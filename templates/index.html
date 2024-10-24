@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз погоды по маршруту</title>
+</head>
+<body>
+    <h1>Прогноз неблагоприятных погодных условий по маршруту</h1>
+    <form method="POST">
+        Начальный город: <input type="text" name="start_city" value="{{ start_city }}"><br><br>
+        Конечный город: <input type="text" name="end_city" value="{{ end_city }}"><br><br>
+        <input type="submit" value="Получить прогноз">
+    </form>
+    {% if result %}
+        <h2>Результат:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+    <hr>
+    <p>Введите названия начального и конечного города, чтобы получить информацию о неблагоприятных погодных условиях на вашем маршруте.</p>
+    <p>Наш сервис использует данные AccuWeather для предоставления актуальной информации о погоде.</p>
+</body>
+</html>
