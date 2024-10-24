@@ -12,11 +12,38 @@
         <input type="submit" value="Получить прогноз">
     </form>
     {% if result %}
-        <h2>Результат:</h2>
-        <p>{{ result }}</p>
+        {% if result.start_weather_info and result.end_weather_info %}
+            <h2>Погода в городе {{ result.start_weather_info.city }}:</h2>
+            <ul>
+                <li>Текущая температура: {{ result.start_weather_info.current_temperature }}°C</li>
+                <li>Погодные условия: {{ result.start_weather_info.weather_text }}</li>
+                <li>Ветер: {{ result.start_weather_info.wind_speed }} км/ч</li>
+                <li>Влажность: {{ result.start_weather_info.humidity }}%</li>
+                <li>Давление: {{ result.start_weather_info.pressure }} мбар</li>
+                <li>Минимальная температура: {{ result.start_weather_info.min_temp }}°C</li>
+                <li>Максимальная температура: {{ result.start_weather_info.max_temp }}°C</li>
+                <li>Вероятность осадков: {{ result.start_weather_info.precipitation_probability }}%</li>
+                <li><strong>{{ result.start_bad_weather }}</strong></li>
+            </ul>
+
+            <h2>Погода в городе {{ result.end_weather_info.city }}:</h2>
+            <ul>
+                <li>Текущая температура: {{ result.end_weather_info.current_temperature }}°C</li>
+                <li>Погодные условия: {{ result.end_weather_info.weather_text }}</li>
+                <li>Ветер: {{ result.end_weather_info.wind_speed }} км/ч</li>
+                <li>Влажность: {{ result.end_weather_info.humidity }}%</li>
+                <li>Давление: {{ result.end_weather_info.pressure }} мбар</li>
+                <li>Минимальная температура: {{ result.end_weather_info.min_temp }}°C</li>
+                <li>Максимальная температура: {{ result.end_weather_info.max_temp }}°C</li>
+                <li>Вероятность осадков: {{ result.end_weather_info.precipitation_probability }}%</li>
+                <li><strong>{{ result.end_bad_weather }}</strong></li>
+            </ul>
+        {% else %}
+            <p>{{ result }}</p>
+        {% endif %}
     {% endif %}
     <hr>
-    <p>Введите названия начального и конечного города, чтобы получить информацию о неблагоприятных погодных условиях на вашем маршруте.</p>
+    <p>Введите названия начального и конечного города, чтобы получить информацию о погоде и неблагоприятных погодных условиях на вашем маршруте.</p>
     <p>Наш сервис использует данные AccuWeather для предоставления актуальной информации о погоде.</p>
 </body>
 </html>
